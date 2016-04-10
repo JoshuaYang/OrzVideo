@@ -89,6 +89,12 @@
         this.video.pause();
     };
 
+    NormalVideo.prototype.stop = function(){
+        this.video.pause();
+        this.video.currentTime = 0;
+        this.firstFrame.style.display = 'block';
+    };
+
     function normalVideo_initStruct(){
         this.container.appendChild(this.video);
         this.container.appendChild(this.firstFrame);

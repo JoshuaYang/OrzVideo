@@ -1,5 +1,6 @@
 var btn_play = document.getElementById('btn-play');
 var btn_pause = document.getElementById('btn-pause');
+var btn_stop = document.getElementById('btn-stop');
 
 var orzVideo = new OrzVideo({
     container: document.getElementById('orz-video'),
@@ -16,4 +17,8 @@ btn_play.addEventListener('click', function(){
 
 btn_pause.addEventListener('click', function(){
     orzVideo.pause();
+}, false);
+
+btn_stop.addEventListener('click', function(){
+    orzVideo.stop();
 }, false);
