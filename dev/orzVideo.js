@@ -70,6 +70,19 @@
         this.endFrame.src = opts.endFrame;
 
         normalVideo_initStruct.call(this);
+        normalVideo_initEvent.call(this);
+    };
+
+    NormalVideo.prototype.play = function(){
+        if(this.firstFrame.style.display == 'block'){
+            this.firstFrame.style.display = 'none';
+        }
+
+        this.video.play();
+    };
+
+    NormalVideo.prototype.pause = function(){
+        this.video.pause();
     };
 
     function normalVideo_initStruct(){
@@ -89,12 +102,26 @@
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
         this.firstFrame.style.left = 0;
-        this.video.style.zIndex = 2;
+        this.firstFrame.style.zIndex = 2;
+        this.firstFrame.style.display = 'block';
 
         this.endFrame.style.position = 'absolute';
         this.endFrame.style.top = 0;
         this.endFrame.style.left = 0;
-        this.video.style.zIndex = 2;
+        this.endFrame.style.zIndex = 2;
+        this.endFrame.style.display = 'none';
+    }
+
+    function normalVideo_initEvent(){
+        var self = this;
+
+        self.video.addEventListener('play', function(){
+
+        }, false);
+
+        self.video.addEventListener('ended', function(){
+            self.endFrame.style.display = 'block';
+        }, false);
     }
 
 
