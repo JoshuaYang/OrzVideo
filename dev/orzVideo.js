@@ -32,7 +32,7 @@
     var useFixedVideo = isMobile && isiPhone;
 
     var defaultOptions = {
-
+        resetWhenEnd: false
     };
 
 
@@ -68,6 +68,7 @@
         this.video.src = opts.video;
         this.firstFrame.src = opts.firstFrame;
         this.endFrame.src = opts.endFrame;
+        this.resetWhenEnd = opts.resetWhenEnd;
 
         normalVideo_initStruct.call(this);
         normalVideo_initEvent.call(this);
@@ -76,6 +77,9 @@
     NormalVideo.prototype.play = function(){
         if(this.firstFrame.style.display == 'block'){
             this.firstFrame.style.display = 'none';
+        }
+        if(this.endFrame.style.display == 'block'){
+            this.endFrame.style.display = 'none';
         }
 
         this.video.play();
@@ -120,7 +124,12 @@
         }, false);
 
         self.video.addEventListener('ended', function(){
-            self.endFrame.style.display = 'block';
+            if(self.resetWhenEnd){
+                self.firstFrame.style.display = 'block';
+                self.video.currentTime = 0;
+            }else{
+                self.endFrame.style.display = 'block';
+            }
         }, false);
     }
 
