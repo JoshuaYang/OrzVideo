@@ -8,9 +8,19 @@
     <title>Document</title>
 
     <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
     .orz-video{
         position: relative;
         display: inline-block;
+    }
+    .orz-video canvas{
+        width: 100%;
+    }
+    .orz-video img{
+        width: 100%;
     }
     .loading{
         position: absolute;
@@ -31,9 +41,9 @@
         <div class="loading"></div>
     </div>
 
-    <div class="orz-video" id="orz-video2">
+    <!-- <div class="orz-video" id="orz-video2">
         <div class="loading"></div>
-    </div>
+    </div> -->
 
     <br>
     <button id="btn-play">play</button>

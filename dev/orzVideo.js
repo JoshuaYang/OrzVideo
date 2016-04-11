@@ -179,7 +179,6 @@
 
         self.video.addEventListener('pause', function(){
             normalVideo_stopLoading.call(self);
-
             self.pauseHandler.call();
         }, false);
 
@@ -203,15 +202,106 @@
     }
 
 
-
-
-
     /* ============================================================ */
     var FixedVideo = function(opts){
+        this.container = opts.container;
+        this.loading = this.container.querySelector('.loading');
+        this.canvas = document.createElement('canvas');
+        this.audio = document.createElement('audio');
+        this.firstFrame = document.createElement('img');
+        this.endFrame = document.createElement('img');
 
+        this.video = new jsmpeg(opts.mpeg, {
+            canvas: this.canvas,
+            seekable: true
+        });
+        this.audio.src = opts.audio;
+
+        this.firstFrame.src = opts.firstFrame;
+        this.endFrame.src = opts.endFrame;
+        this.resetWhenEnd = opts.resetWhenEnd;
+
+        this.playHandler = opts.onplay;
+        this.pauseHandler = opts.onpause;
+        this.endHandler = opts.onend;
+
+        fixedVideo_initStruct.call(this);
+        fixedVideo_initEvent.call(this);
     };
 
+    FixedVideo.prototype.play = function(){
+        var self = this;
 
+        self.video.play();
+
+        self.firstFrame.style.display = 'none';
+        self.endFrame.style.display = 'none';
+
+        self.flag_loading = setInterval(function(){
+            if(self.prevTime == self.video.currentTime){
+                // loading
+                self.loading.style.display = 'block';
+            }else{
+                // no loading
+                self.loading.style.display = 'none';
+
+                self.prevTime = self.video.currentTime;
+            }
+        }, 300);
+
+        self.playHandler.call();
+    };
+
+    FixedVideo.prototype.pause = function(){
+        this.video.pause();
+
+        fixedVideo_stopLoading.call(this);
+        this.pauseHandler.call();
+    };
+
+    FixedVideo.prototype.stop = function(){
+        this.video.stop();
+        this.firstFrame.style.display = 'block';
+    };
+
+    function fixedVideo_initStruct(){
+        this.container.appendChild(this.canvas);
+        this.container.appendChild(this.firstFrame);
+        this.container.appendChild(this.endFrame);
+
+        var container_position = getComputedStyle(this.container).position;
+
+        this.loading.style.display = 'none';
+
+        if(!container_position.match(/relative|absolute|fixed/i)){
+            this.container.style.position = 'relative';
+        }
+
+        this.canvas.style.position = 'relative';
+        this.canvas.style.zIndex = 1;
+
+        this.firstFrame.style.position = 'absolute';
+        this.firstFrame.style.top = 0;
+        this.firstFrame.style.left = 0;
+        this.firstFrame.style.zIndex = 2;
+        this.firstFrame.style.display = 'block';
+
+        this.endFrame.style.position = 'absolute';
+        this.endFrame.style.top = 0;
+        this.endFrame.style.left = 0;
+        this.endFrame.style.zIndex = 2;
+        this.endFrame.style.display = 'none';
+    }
+
+    function fixedVideo_initEvent(){
+        var self = this;
+
+    }
+
+    function fixedVideo_stopLoading(){
+        clearInterval(this.flag_loading);
+        this.loading.style.display = 'none';
+    }
 
 
 

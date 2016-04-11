@@ -14,6 +14,8 @@ var btn_set_current_time = document.getElementById('btn-set-current-time');
 var orzVideo = new OrzVideo({
     container: document.getElementById('orz-video1'),
     video: 'media/video.mp4',
+    mpeg: 'media/video.mpg',
+    audio: 'media/video.mp3',
     firstFrame: 'media/video_firstframe.jpg',
     endFrame: 'media/video_endframe.jpg',
     resetWhenEnd: true,
@@ -29,12 +31,12 @@ var orzVideo = new OrzVideo({
     }
 });
 
-var ttt = new OrzVideo({
-    container: document.getElementById('orz-video2'),
-    video: 'media/video.mp4',
-    firstFrame: 'media/video_firstframe.jpg',
-    endFrame: 'media/video_endframe.jpg',
-});
+// var ttt = new OrzVideo({
+//     container: document.getElementById('orz-video2'),
+//     video: 'media/video.mp4',
+//     firstFrame: 'media/video_firstframe.jpg',
+//     endFrame: 'media/video_endframe.jpg',
+// });
 
 
 btn_play.addEventListener('click', function(){
