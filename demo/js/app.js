@@ -12,7 +12,7 @@ var btn_set_current_time = document.getElementById('btn-set-current-time');
 
 
 var orzVideo = new OrzVideo({
-    container: document.getElementById('orz-video'),
+    container: document.getElementById('orz-video1'),
     video: 'media/video.mp4',
     firstFrame: 'media/video_firstframe.jpg',
     endFrame: 'media/video_endframe.jpg',
@@ -27,6 +27,13 @@ var orzVideo = new OrzVideo({
     onend: function(){
         console.log('==========end');
     }
+});
+
+var ttt = new OrzVideo({
+    container: document.getElementById('orz-video2'),
+    video: 'media/video.mp4',
+    firstFrame: 'media/video_firstframe.jpg',
+    endFrame: 'media/video_endframe.jpg',
 });
 
 
