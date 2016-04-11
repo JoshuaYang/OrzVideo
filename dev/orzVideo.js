@@ -33,6 +33,7 @@
 
     var defaultOptions = {
         resetWhenEnd: false,
+        muted: false,
         onplay: function(){},
         onpause: function(){},
         onend: function(){}
@@ -46,6 +47,8 @@
      * firstFrame
      * endFrame
      * resetWhenEnd
+     *
+     * muted
      *
      * onplay
      * onpause
@@ -78,12 +81,26 @@
         this.endFrame.src = opts.endFrame;
         this.resetWhenEnd = opts.resetWhenEnd;
 
+        this.ismute = opts.muted;
+
         this.playHandler = opts.onplay;
         this.pauseHandler = opts.onpause;
         this.endHandler = opts.onend;
 
         normalVideo_initStruct.call(this);
         normalVideo_initEvent.call(this);
+
+        Object.defineProperties(this, {
+            muted: {
+                get: function(){
+                    return this.ismute;
+                },
+                set: function(val){
+                    this.ismute = val;
+                    this.video.muted = this.ismute;
+                }
+            }
+        });
     };
 
     NormalVideo.prototype.play = function(){
@@ -116,6 +133,7 @@
 
         this.video.style.position = 'relative';
         this.video.style.zIndex = 1;
+        this.video.muted = this.ismute;
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
