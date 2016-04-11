@@ -1,8 +1,15 @@
 var btn_play = document.getElementById('btn-play');
 var btn_pause = document.getElementById('btn-pause');
 var btn_stop = document.getElementById('btn-stop');
+
 var btn_mute = document.getElementById('btn-mute');
 var btn_unmute = document.getElementById('btn-unmute');
+
+var btn_get_current_time = document.getElementById('btn-get-current-time');
+var current_time = document.getElementById('current-time');
+var btn_set_current_time = document.getElementById('btn-set-current-time');
+
+
 
 var orzVideo = new OrzVideo({
     container: document.getElementById('orz-video'),
@@ -41,4 +48,12 @@ btn_mute.addEventListener('click', function(){
 
 btn_unmute.addEventListener('click', function(){
     orzVideo.muted = false;
+}, false);
+
+btn_get_current_time.addEventListener('click', function(){
+    alert(orzVideo.currentTime);
+}, false);
+
+btn_set_current_time.addEventListener('click', function(){
+    orzVideo.currentTime = current_time.value;
 }, false);

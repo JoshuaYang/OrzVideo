@@ -77,11 +77,11 @@
         this.endFrame = document.createElement('img');
 
         this.video.src = opts.video;
+        this.video.muted = opts.muted;
+
         this.firstFrame.src = opts.firstFrame;
         this.endFrame.src = opts.endFrame;
         this.resetWhenEnd = opts.resetWhenEnd;
-
-        this.ismute = opts.muted;
 
         this.playHandler = opts.onplay;
         this.pauseHandler = opts.onpause;
@@ -93,20 +93,24 @@
         Object.defineProperties(this, {
             muted: {
                 get: function(){
-                    return this.ismute;
+                    return this.video.muted;
                 },
                 set: function(val){
-                    this.ismute = val;
-                    this.video.muted = this.ismute;
+                    this.video.muted = val;
+                }
+            },
+            currentTime: {
+                get: function(){
+                    return this.video.currentTime;
+                },
+                set: function(val){
+                    this.video.currentTime = val;
                 }
             }
         });
     };
 
     NormalVideo.prototype.play = function(){
-        this.firstFrame.style.display = 'none';
-        this.endFrame.style.display = 'none';
-
         this.video.play();
     };
 
@@ -133,7 +137,6 @@
 
         this.video.style.position = 'relative';
         this.video.style.zIndex = 1;
-        this.video.muted = this.ismute;
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
@@ -152,6 +155,9 @@
         var self = this;
 
         self.video.addEventListener('play', function(){
+            self.firstFrame.style.display = 'none';
+            self.endFrame.style.display = 'none';
+
             self.playHandler.call(this);
         }, false);
 
