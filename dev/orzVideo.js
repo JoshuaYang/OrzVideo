@@ -108,15 +108,24 @@
                 set: function(val){
                     this.video.currentTime = val;
                 }
+            },
+            paused: {
+                get: function(){
+                    return this.video.paused;
+                }
             }
         });
     };
 
     NormalVideo.prototype.play = function(){
+        if(!this.paused) return;
+
         this.video.play();
     };
 
     NormalVideo.prototype.pause = function(){
+        if(this.paused) return;
+
         this.video.pause();
     };
 
@@ -263,6 +272,8 @@
         fixedVideo_stopLoading.call(this);
 
         this.video.stop();
+        this.video.play();
+        this.video.pause();
         this.firstFrame.style.display = 'block';
     };
 
