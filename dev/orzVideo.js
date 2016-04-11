@@ -213,7 +213,7 @@
 
         this.video = new jsmpeg(opts.mpeg, {
             canvas: this.canvas,
-            seekable: true
+            seekable: true,
         });
         this.audio.src = opts.audio;
 
@@ -260,6 +260,8 @@
     };
 
     FixedVideo.prototype.stop = function(){
+        fixedVideo_stopLoading.call(this);
+
         this.video.stop();
         this.firstFrame.style.display = 'block';
     };
