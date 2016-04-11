@@ -54,7 +54,7 @@
      * onpause
      * onend
      *
-     * mpeg
+     * mpg
      * audio
      */
 
@@ -93,6 +93,11 @@
         normalVideo_initEvent.call(this);
 
         Object.defineProperties(this, {
+            paused: {
+                get: function(){
+                    return this.video.paused;
+                }
+            },
             muted: {
                 get: function(){
                     return this.video.muted;
@@ -109,11 +114,6 @@
                     this.video.currentTime = val;
                 }
             },
-            paused: {
-                get: function(){
-                    return this.video.paused;
-                }
-            }
         });
     };
 
@@ -220,11 +220,12 @@
         this.firstFrame = document.createElement('img');
         this.endFrame = document.createElement('img');
 
-        this.video = new jsmpeg(opts.mpeg, {
+        this.video = new jsmpeg(opts.mpg, {
             canvas: this.canvas,
             seekable: true,
         });
         this.audio.src = opts.audio;
+        this.ispaused = true;
 
         this.firstFrame.src = opts.firstFrame;
         this.endFrame.src = opts.endFrame;
@@ -236,10 +237,25 @@
 
         fixedVideo_initStruct.call(this);
         fixedVideo_initEvent.call(this);
+
+
+        Object.defineProperties(this, {
+            paused: {
+                get: function(){
+                    return this.ispaused;
+                },
+                set: function(val){
+                    this.ispaused = val;
+                }
+            },
+        });
     };
 
     FixedVideo.prototype.play = function(){
         var self = this;
+
+        if(!self.paused) return;
+        self.paused = false;
 
         self.video.play();
 
@@ -262,19 +278,28 @@
     };
 
     FixedVideo.prototype.pause = function(){
-        this.video.pause();
+        var self = this;
 
-        fixedVideo_stopLoading.call(this);
-        this.pauseHandler.call();
+        if(self.paused) return;
+        self.paused = true;
+
+        self.video.pause();
+
+        fixedVideo_stopLoading.call(self);
+        self.pauseHandler.call();
     };
 
     FixedVideo.prototype.stop = function(){
-        fixedVideo_stopLoading.call(this);
+        var self = this;
 
-        this.video.stop();
-        this.video.play();
-        this.video.pause();
-        this.firstFrame.style.display = 'block';
+        self.paused = true;
+
+        fixedVideo_stopLoading.call(self);
+
+        self.video.stop();
+        self.video.play();
+        self.video.pause();
+        self.firstFrame.style.display = 'block';
     };
 
     function fixedVideo_initStruct(){

@@ -16,7 +16,7 @@ var btn_set_current_time = document.getElementById('btn-set-current-time');
 var orzVideo = new OrzVideo({
     container: document.getElementById('orz-video1'),
     video: 'media/video.mp4',
-    mpeg: 'media/video.mpg',
+    mpg: 'media/video.mpg',
     audio: 'media/video.mp3',
     firstFrame: 'media/video_firstframe.jpg',
     endFrame: 'media/video_endframe.jpg',

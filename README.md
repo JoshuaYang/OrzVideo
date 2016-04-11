@@ -25,6 +25,8 @@ var orzVideo = new OrzVideo({...options});
 | ------------ | -------- | --------- | ---------------------------------------- |
 | container    | dom      | necessary | the initial container of the video plugin |
 | video        | string   | necessary | file path, the video source, recommend .mp4 |
+| mpg          | string   | necessary | file path, the mpg source that used on iPhone |
+| audio        | string   | necessary | file path, the sound source that used on iPhone |
 | firstFrame   | string   | necessary | file path, the first frame of video, use as poster |
 | endFrame     | string   | necessary | file path, the last frame of video       |
 | resetWhenEnd | boolean  | false     | whether reset play position to the beginning when play end, |
