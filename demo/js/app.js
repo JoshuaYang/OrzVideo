@@ -8,6 +8,15 @@ var orzVideo = new OrzVideo({
     firstFrame: 'media/video_firstframe.jpg',
     endFrame: 'media/video_endframe.jpg',
     resetWhenEnd: true,
+    onplay: function(){
+        console.log('==========play');
+    },
+    onpause: function(){
+        console.log('==========pause');
+    },
+    onend: function(){
+        console.log('==========end');
+    }
 });
 
 
