@@ -8,11 +8,30 @@
     <title>Document</title>
 
     <style>
+    .orz-video{
+        position: relative;
+        display: inline-block;
+    }
+    .loading{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+        margin-top: -25px;
+        border: 5px solid white;
+        border-radius: 100%;
+        z-index: 3;
+    }
     </style>
 </head>
 <body>
-    <div class="orz-video" id="orz-video"></div>
+    <div class="orz-video" id="orz-video">
+        <div class="loading"></div>
+    </div>
 
+    <br>
     <button id="btn-play">play</button>
     <button id="btn-pause">pause</button>
     <button id="btn-stop">stop</button>

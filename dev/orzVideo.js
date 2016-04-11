@@ -72,12 +72,14 @@
     /* ============================================================ */
     var NormalVideo = function(opts){
         this.container = opts.container;
+        this.loading = this.container.querySelector('.loading');
         this.video = document.createElement('video');
         this.firstFrame = document.createElement('img');
         this.endFrame = document.createElement('img');
 
         this.video.src = opts.video;
         this.video.muted = opts.muted;
+        this.video.preload = '';
 
         this.firstFrame.src = opts.firstFrame;
         this.endFrame.src = opts.endFrame;
@@ -131,6 +133,8 @@
 
         var container_position = getComputedStyle(this.container).position;
 
+        this.loading.style.display = 'none';
+
         if(!container_position.match(/relative|absolute|fixed/i)){
             this.container.style.position = 'relative';
         }
@@ -158,14 +162,30 @@
             self.firstFrame.style.display = 'none';
             self.endFrame.style.display = 'none';
 
-            self.playHandler.call(this);
+            self.flag_loading = setInterval(function(){
+                if(self.prevTime == self.video.currentTime){
+                    // loading
+                    self.loading.style.display = 'block';
+                }else{
+                    // no loading
+                    self.loading.style.display = 'none';
+
+                    self.prevTime = self.video.currentTime;
+                }
+            }, 300);
+
+            self.playHandler.call();
         }, false);
 
         self.video.addEventListener('pause', function(){
-            self.pauseHandler.call(this);
+            normalVideo_stopLoading.call(self);
+
+            self.pauseHandler.call();
         }, false);
 
         self.video.addEventListener('ended', function(){
+            normalVideo_stopLoading.call(self);
+
             if(self.resetWhenEnd){
                 self.firstFrame.style.display = 'block';
                 self.video.currentTime = 0;
@@ -173,8 +193,13 @@
                 self.endFrame.style.display = 'block';
             }
 
-            self.endHandler.call(this);
+            self.endHandler.call();
         }, false);
+    }
+
+    function normalVideo_stopLoading(){
+        clearInterval(this.flag_loading);
+        this.loading.style.display = 'none';
     }
 
 
