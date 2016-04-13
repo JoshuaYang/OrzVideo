@@ -360,11 +360,19 @@
     function fixedVideo_endHandler(){
         var self = this;
 
+        self.paused = true;
+
         fixedVideo_stopLoading.call(self);
+
+        self.video.stop();
+        self.video.play();
+        self.video.pause();
+
+        self.audio.pause();
+        self.audio.currentTime = 0;
 
         if(self.resetWhenEnd){
             self.firstFrame.style.display = 'block';
-            self.video.currentTime = 0;
         }else{
             self.endFrame.style.display = 'block';
         }
