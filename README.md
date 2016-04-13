@@ -1,7 +1,7 @@
 # OrzVideo
-why there isn't a plugin that can play html5 inline video on iphone safari?
+why there isn't a plugin that can play html5 inline video in iphone safari? This plugin will generator a native html5 video tag in most browsers, and will draw .mpg video on a canvas in iphone safari with a corresponding audio.
 
-> depends on jsmpeg
+> this plugin depends on jsmpeg
 
 ## API
 
