@@ -304,7 +304,7 @@ jsmpeg.prototype.fetchReaderReceive = function(reader, result) {
 	this.lastFrameIndex =  this.findLastPictureStartCode();
 
 	// Initialize the sequence headers and start playback if we have enough data
-	// (at least 128kb) 
+	// (at least 128kb)
 	if( !this.sequenceStarted && this.buffer.writePos >= this.progressiveMinSize ) {
 		this.findStartCode(START_SEQUENCE);
 		this.firstSequenceHeader = this.buffer.index;
@@ -348,7 +348,7 @@ jsmpeg.prototype.findLastPictureStartCode = function() {
 			bufferBytes[i] == START_PICTURE &&
 			bufferBytes[i-1] == 0x01 &&
 			bufferBytes[i-2] == 0x00 &&
-			bufferBytes[i-3] == 0x00			
+			bufferBytes[i-3] == 0x00
 		) {
 			return (i-3) << 3;
 		}
@@ -360,9 +360,9 @@ jsmpeg.prototype.load = function( url ) {
 	this.url = url;
 
 	var that = this;
-	if( 
-		this.progressive && 
-		window.fetch && 
+	if(
+		this.progressive &&
+		window.fetch &&
 		window.ReadableByteStream
 	) {
 		var reqHeaders = new Headers();
@@ -2598,4 +2598,3 @@ BitReader.prototype.rewind = function(count) {
 };
 
 })(window);
-

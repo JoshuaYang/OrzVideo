@@ -41,7 +41,7 @@ var orzVideo = new OrzVideo({...options});
 | ----------- | ------- | ---------------------------------------- |
 | paused      | boolean | get whether the video is paused          |
 | muted       | boolean | set / get whether the video is muted     |
-| currentTime | number  | set / get the current playback time in seconds |
+| currentTime | number  | get the current playback time in seconds（tip：there's issue in set function of jsmpeg, so it's forbidden now） |
 
 ### method
 

@@ -8,8 +8,6 @@ var btn_unmute = document.getElementById('btn-unmute');
 var btn_get_muted = document.getElementById('btn-get-muted');
 
 var btn_get_current_time = document.getElementById('btn-get-current-time');
-var current_time = document.getElementById('current-time');
-var btn_set_current_time = document.getElementById('btn-set-current-time');
 
 
 
@@ -71,8 +69,4 @@ btn_get_muted.addEventListener('click', function(){
 
 btn_get_current_time.addEventListener('click', function(){
     alert(orzVideo.currentTime);
-}, false);
-
-btn_set_current_time.addEventListener('click', function(){
-    orzVideo.currentTime = current_time.value;
 }, false);

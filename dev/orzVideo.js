@@ -110,9 +110,9 @@
                 get: function(){
                     return this.video.currentTime;
                 },
-                set: function(val){
-                    this.video.currentTime = val;
-                }
+                // set: function(val){
+                //     this.video.currentTime = val;
+                // }
             },
         });
     };
@@ -231,6 +231,7 @@
         });
         this.audio.src = opts.audio;
         this.ispaused = true;
+        this.ismuted = false;
 
         this.firstFrame.src = opts.firstFrame;
         this.endFrame.src = opts.endFrame;
@@ -256,7 +257,15 @@
             currentTime: {
                 get: function(){
                     return this.video.currentTime;
+                }
+            },
+            muted: {
+                get: function(){
+                    return this.ismuted;
                 },
+                set: function(val){
+
+                }
             }
         });
     };
@@ -268,6 +277,7 @@
         self.paused = false;
 
         self.video.play();
+        self.audio.play();
 
         self.firstFrame.style.display = 'none';
         self.endFrame.style.display = 'none';
