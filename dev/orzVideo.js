@@ -230,8 +230,9 @@
             }
         });
         this.audio.src = opts.audio;
+
         this.ispaused = true;
-        this.ismuted = false;
+        this.ismuted = opts.muted;
 
         this.firstFrame.src = opts.firstFrame;
         this.endFrame.src = opts.endFrame;
@@ -264,7 +265,17 @@
                     return this.ismuted;
                 },
                 set: function(val){
+                    if(val == this.ismuted) return;
 
+                    this.ismuted = val;
+
+                    if(this.ismuted){
+                        this.audio.pause();
+                    }else{
+                        this.audio.currentTime = this.currentTime;
+
+                        if(!this.ispaused) this.audio.play();
+                    }
                 }
             }
         });
@@ -277,7 +288,11 @@
         self.paused = false;
 
         self.video.play();
-        self.audio.play();
+        if(this.ismuted){
+            this.audio.pause();
+        }else{
+            this.audio.play();
+        }
 
         self.firstFrame.style.display = 'none';
         self.endFrame.style.display = 'none';
@@ -304,6 +319,7 @@
         self.paused = true;
 
         self.video.pause();
+        self.audio.pause();
 
         fixedVideo_stopLoading.call(self);
         self.pauseHandler.call();
@@ -319,6 +335,10 @@
         self.video.stop();
         self.video.play();
         self.video.pause();
+
+        self.audio.pause();
+        self.audio.currentTime = 0;
+
         self.firstFrame.style.display = 'block';
     };
 
@@ -353,7 +373,6 @@
 
     function fixedVideo_initEvent(){
         var self = this;
-
     }
 
     function fixedVideo_endHandler(){

@@ -1,6 +1,8 @@
 # OrzVideo
 why there isn't a plugin that can play html5 inline video on iphone safari?
 
+> depends on jsmpeg
+
 ## API
 
 ### layout
@@ -39,9 +41,9 @@ var orzVideo = new OrzVideo({...options});
 
 | name        | type    | descriptons                              |
 | ----------- | ------- | ---------------------------------------- |
+| currentTime | number  | get the current playback time in seconds（tip：there's issue in set function of jsmpeg, so it's forbidden now） |
 | paused      | boolean | get whether the video is paused          |
 | muted       | boolean | set / get whether the video is muted     |
-| currentTime | number  | get the current playback time in seconds（tip：there's issue in set function of jsmpeg, so it's forbidden now） |
 
 ### method
 
