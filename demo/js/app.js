@@ -21,7 +21,7 @@ var orzVideo = new OrzVideo({
     firstFrame: 'media/video_firstframe.jpg',
     endFrame: 'media/video_endframe.jpg',
     resetWhenEnd: true,
-    muted: true,
+    muted: false,
     onplay: function(){
         console.log('==========play');
     },

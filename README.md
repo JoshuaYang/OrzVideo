@@ -39,9 +39,9 @@ var orzVideo = new OrzVideo({...options});
 
 | name        | type    | descriptons                              |
 | ----------- | ------- | ---------------------------------------- |
+| paused      | boolean | get whether the video is paused          |
 | muted       | boolean | set / get whether the video is muted     |
 | currentTime | number  | set / get the current playback time in seconds |
-| paused      | boolean | get whether the video is paused          |
 
 ### method
 

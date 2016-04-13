@@ -213,6 +213,8 @@
 
     /* ============================================================ */
     var FixedVideo = function(opts){
+        var self = this;
+
         this.container = opts.container;
         this.loading = this.container.querySelector('.loading');
         this.canvas = document.createElement('canvas');
@@ -223,6 +225,9 @@
         this.video = new jsmpeg(opts.mpg, {
             canvas: this.canvas,
             seekable: true,
+            onfinished: function(){
+                fixedVideo_endHandler.call(self);
+            }
         });
         this.audio.src = opts.audio;
         this.ispaused = true;
@@ -248,6 +253,11 @@
                     this.ispaused = val;
                 }
             },
+            currentTime: {
+                get: function(){
+                    return this.video.currentTime;
+                },
+            }
         });
     };
 
@@ -334,6 +344,21 @@
     function fixedVideo_initEvent(){
         var self = this;
 
+    }
+
+    function fixedVideo_endHandler(){
+        var self = this;
+
+        fixedVideo_stopLoading.call(self);
+
+        if(self.resetWhenEnd){
+            self.firstFrame.style.display = 'block';
+            self.video.currentTime = 0;
+        }else{
+            self.endFrame.style.display = 'block';
+        }
+
+        self.endHandler.call();
     }
 
     function fixedVideo_stopLoading(){
