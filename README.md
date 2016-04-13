@@ -1,7 +1,7 @@
 # OrzVideo
 A plugin that can play video inline cross all browsers, **include iphone safari**. This will generator a native html5 video tag in most browsers, and will draw .mpg video on a canvas in iphone safari with a corresponding audio.
 
-> this plugin depends on jsmpeg
+> this plugin depends on [jsmpeg](https://github.com/phoboslab/jsmpeg)
 
 ## API
 
