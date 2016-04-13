@@ -1,0 +1,22 @@
+{
+  "name": "orz-video",
+  "version": "1.0.0",
+  "description": "A plugin that can play video inline cross all browsers, **include iphone safari**. This will generator a native html5 video tag in most browsers, and will draw .mpg video on a canvas in iphone safari with a corresponding audio.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshuaYang/OrzVideo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshuaYang/OrzVideo/issues"
+  },
+  "homepage": "https://github.com/JoshuaYang/OrzVideo#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
