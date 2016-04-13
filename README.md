@@ -21,7 +21,7 @@ A plugin that can play video inline cross all browsers, **include iphone safari*
 <script src="dist/orzvideo.min.js"></script>
 ```
 
-### Constructor
+### constructor
 
 ```javascript
 var orzVideo = new OrzVideo({...options});
