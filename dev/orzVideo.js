@@ -40,24 +40,6 @@
     };
 
 
-    /**
-     * necessary options:
-     * container
-     * video
-     * firstFrame
-     * endFrame
-     * resetWhenEnd
-     *
-     * muted
-     *
-     * onplay
-     * onpause
-     * onend
-     *
-     * mpg
-     * audio
-     */
-
     var OrzVideo = function(opts) {
         var options = merge({}, defaultOptions, opts);
 
