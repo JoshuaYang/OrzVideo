@@ -37,7 +37,7 @@ var orzVideo = new OrzVideo({...options});
 | audio        | string   | necessary | file path, the sound source that used on iPhone |
 | firstFrame   | string   | necessary | file path, the first frame of video, use as poster |
 | endFrame     | string   | necessary | file path, the last frame of video       |
-| resetWhenEnd | boolean  | false     | whether reset play position to the beginning when play end, |
+| resetWhenEnd | boolean  | false     | whether reset play position to the beginning when play end |
 | muted        | boolean  | false     | whether to be muted when initialised     |
 | onplay       | function | null      | called when play                         |
 | onpause      | function | null      | called when pause                        |
