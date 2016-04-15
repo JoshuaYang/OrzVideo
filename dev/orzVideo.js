@@ -29,7 +29,7 @@
     var isiPhone = ua.match(/iphone/i) !== null;
     var isAndroid = ua.match(/android/i) !== null;
 
-    var useFixedVideo = isMobile && isiPhone;
+    var useFixedVideo = isMobile && isiPhone;//'ontouchstart' in window;
 
     var defaultOptions = {
         resetWhenEnd: false,
