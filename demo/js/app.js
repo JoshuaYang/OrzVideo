@@ -31,16 +31,16 @@ var orzVideo = new OrzVideo({
     }
 });
 
-var ttt = new OrzVideo({
-    container: document.getElementById('orz-video2'),
-    video: 'media/video.mp4',
-    mpg: 'media/video.mpg',
-    audio: 'media/video.mp3',
-    firstFrame: 'media/video_firstframe.jpg',
-    endFrame: 'media/video_endframe.jpg',
-    resetWhenEnd: true,
-    muted: true,
-});
+// var ttt = new OrzVideo({
+//     container: document.getElementById('orz-video2'),
+//     video: 'media/video.mp4',
+//     mpg: 'media/video.mpg',
+//     audio: 'media/video.mp3',
+//     firstFrame: 'media/video_firstframe.jpg',
+//     endFrame: 'media/video_endframe.jpg',
+//     resetWhenEnd: true,
+//     muted: true,
+// });
 
 
 btn_play.addEventListener('click', function(){

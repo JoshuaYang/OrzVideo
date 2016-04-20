@@ -163,7 +163,7 @@
 
                     self.prevTime = self.video.currentTime;
                 }
-            }, 300);
+            }, 100);
 
             self.playHandler.call();
         }, false);
@@ -207,15 +207,20 @@
         this.video = new jsmpeg(opts.mpg, {
             canvas: this.canvas,
             seekable: true,
+            preload: true,
+            forceCanvas2D: true,
+            onload: function(){
+
+            },
             onfinished: function(){
                 fixedVideo_endHandler.call(self);
             }
         });
+        this.audio.setAttribute('preload', '');
         this.audio.onloadeddata = function(){
             fixedVideo_initStruct.call(self);
             fixedVideo_initEvent.call(self);
         };
-
         this.audio.src = opts.audio;
 
         this.ispaused = true;
@@ -228,6 +233,8 @@
         this.playHandler = opts.onplay;
         this.pauseHandler = opts.onpause;
         this.endHandler = opts.onend;
+
+
 
 
         Object.defineProperties(this, {
@@ -285,13 +292,15 @@
             if(self.prevTime == self.video.currentTime){
                 // loading
                 self.loading.style.display = 'block';
+                self.audio.pause();
             }else{
                 // no loading
                 self.loading.style.display = 'none';
 
                 self.prevTime = self.video.currentTime;
+                self.audio.play();
             }
-        }, 300);
+        }, 100);
 
         self.playHandler.call();
     };
