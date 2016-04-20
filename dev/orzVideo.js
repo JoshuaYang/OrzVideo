@@ -204,6 +204,7 @@
         this.firstFrame = new Image();
         this.endFrame = new Image();
         this.loaded = false;
+        this.autoplay = false;
 
         this.video = new jsmpeg(opts.mpg, {
             canvas: this.canvas,
@@ -211,8 +212,9 @@
             preload: true,
             forceCanvas2D: true,
             onload: function(){
-                console.log('==========jsmpeg loaded');
                 self.loaded = true;
+
+                if(self.autoplay) self.play();
             },
             onfinished: function(){
                 fixedVideo_endHandler.call(self);
@@ -274,6 +276,12 @@
     FixedVideo.prototype.play = function(){
         var self = this;
 
+        if(!self.loaded){
+            self.autoplay = true;
+            self.loading.style.display = 'block';
+            return;
+        }
+
         if(!self.paused) return;
         self.paused = false;
 
@@ -288,7 +296,9 @@
         self.endFrame.style.display = 'none';
 
         self.flag_loading = setInterval(function(){
-            if(self.prevTime == self.video.currentTime){
+            if(self.muted) return;
+
+            if(self.prevTime == self.audio.currentTime){
                 // loading
                 self.loading.style.display = 'block';
                 self.audio.pause();
@@ -296,7 +306,7 @@
                 // no loading
                 self.loading.style.display = 'none';
 
-                self.prevTime = self.video.currentTime;
+                self.prevTime = self.audio.currentTime;
                 self.audio.play();
             }
         }, 100);
@@ -306,6 +316,12 @@
 
     FixedVideo.prototype.pause = function(){
         var self = this;
+
+        if(!self.loaded){
+            self.autoplay = false;
+            self.loading.style.display = 'none';
+            return;
+        }
 
         if(self.paused) return;
         self.paused = true;
@@ -319,6 +335,11 @@
 
     FixedVideo.prototype.stop = function(){
         var self = this;
+
+        if(!self.loaded){
+            self.autoplay = false;
+            return;
+        }
 
         self.paused = true;
 
