@@ -56,8 +56,8 @@
         this.container = opts.container;
         this.loading = this.container.querySelector('.loading');
         this.video = document.createElement('video');
-        this.firstFrame = document.createElement('img');
-        this.endFrame = document.createElement('img');
+        this.firstFrame = new Image();
+        this.endFrame = new Image();
 
         this.video.src = opts.video;
         this.video.muted = opts.muted;
@@ -200,9 +200,10 @@
         this.container = opts.container;
         this.loading = this.container.querySelector('.loading');
         this.canvas = document.createElement('canvas');
-        this.audio = document.createElement('audio');
-        this.firstFrame = document.createElement('img');
-        this.endFrame = document.createElement('img');
+        this.audio = new Audio();
+        this.firstFrame = new Image();
+        this.endFrame = new Image();
+        this.loaded = false;
 
         this.video = new jsmpeg(opts.mpg, {
             canvas: this.canvas,
@@ -210,17 +211,14 @@
             preload: true,
             forceCanvas2D: true,
             onload: function(){
-
+                console.log('==========jsmpeg loaded');
+                self.loaded = true;
             },
             onfinished: function(){
                 fixedVideo_endHandler.call(self);
             }
         });
         this.audio.setAttribute('preload', '');
-        this.audio.onloadeddata = function(){
-            fixedVideo_initStruct.call(self);
-            fixedVideo_initEvent.call(self);
-        };
         this.audio.src = opts.audio;
 
         this.ispaused = true;
@@ -234,7 +232,8 @@
         this.pauseHandler = opts.onpause;
         this.endHandler = opts.onend;
 
-
+        fixedVideo_initStruct.call(self);
+        fixedVideo_initEvent.call(self);
 
 
         Object.defineProperties(this, {
