@@ -131,18 +131,18 @@
         }
 
         this.video.style.position = 'relative';
-        this.video.style.zIndex = 1;
+        this.video.style.zIndex = 2;
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
         this.firstFrame.style.left = 0;
-        this.firstFrame.style.zIndex = 2;
+        this.firstFrame.style.zIndex = 3;
         this.firstFrame.style.display = 'block';
 
         this.endFrame.style.position = 'absolute';
         this.endFrame.style.top = 0;
         this.endFrame.style.left = 0;
-        this.endFrame.style.zIndex = 2;
+        this.endFrame.style.zIndex = 3;
         this.endFrame.style.display = 'none';
     }
 
@@ -211,6 +211,11 @@
                 fixedVideo_endHandler.call(self);
             }
         });
+        this.audio.onloadeddata = function(){
+            fixedVideo_initStruct.call(self);
+            fixedVideo_initEvent.call(self);
+        };
+
         this.audio.src = opts.audio;
 
         this.ispaused = true;
@@ -223,9 +228,6 @@
         this.playHandler = opts.onplay;
         this.pauseHandler = opts.onpause;
         this.endHandler = opts.onend;
-
-        fixedVideo_initStruct.call(this);
-        fixedVideo_initEvent.call(this);
 
 
         Object.defineProperties(this, {
@@ -338,18 +340,18 @@
         }
 
         this.canvas.style.position = 'relative';
-        this.canvas.style.zIndex = 1;
+        this.canvas.style.zIndex = 2;
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
         this.firstFrame.style.left = 0;
-        this.firstFrame.style.zIndex = 2;
+        this.firstFrame.style.zIndex = 3;
         this.firstFrame.style.display = 'block';
 
         this.endFrame.style.position = 'absolute';
         this.endFrame.style.top = 0;
         this.endFrame.style.left = 0;
-        this.endFrame.style.zIndex = 2;
+        this.endFrame.style.zIndex = 3;
         this.endFrame.style.display = 'none';
     }
 
