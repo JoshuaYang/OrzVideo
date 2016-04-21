@@ -301,13 +301,13 @@
             if(self.prevTime == self.audio.currentTime){
                 // loading
                 self.loading.style.display = 'block';
-                self.audio.pause();
+                // self.audio.pause();
             }else{
                 // no loading
                 self.loading.style.display = 'none';
 
                 self.prevTime = self.audio.currentTime;
-                self.audio.play();
+                // self.audio.play();
             }
         }, 100);
 
