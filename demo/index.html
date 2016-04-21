@@ -15,7 +15,6 @@
     .orz-video{
         position: relative;
         display: inline-block;
-        margin-bottom: 20px;
     }
     .orz-video canvas{
         width: 100%;
@@ -35,6 +34,11 @@
         border-radius: 100%;
         z-index: 4;
     }
+
+
+    .controller{
+        margin-top: 50px;
+    }
     </style>
 </head>
 <body>
@@ -42,21 +46,21 @@
         <div class="loading"></div>
     </div>
 
-    <!-- <div class="orz-video" id="orz-video2">
-        <div class="loading"></div>
-    </div> -->
+    <div class="controller">
+        <button id="btn-load">start to load OrzVideo</button>
+        <br>
+        <button id="btn-play">play</button>
+        <button id="btn-pause">pause</button>
+        <button id="btn-stop">stop</button>
+        <button id="btn-get-paused">get paused</button>
+        <br>
+        <button id="btn-mute">mute</button>
+        <button id="btn-unmute">unmute</button>
+        <button id="btn-get-muted">get muted</button>
+        <br>
+        <button id="btn-get-current-time">get currentTime</button>
+    </div>
 
-    <br>
-    <button id="btn-play">play</button>
-    <button id="btn-pause">pause</button>
-    <button id="btn-stop">stop</button>
-    <button id="btn-get-paused">get paused</button>
-    <br>
-    <button id="btn-mute">mute</button>
-    <button id="btn-unmute">unmute</button>
-    <button id="btn-get-muted">get muted</button>
-    <br>
-    <button id="btn-get-current-time">get currentTime</button>
 
 
     <script src="../dev/jsmpg.js"></script>

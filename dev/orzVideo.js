@@ -163,7 +163,7 @@
 
                     self.prevTime = self.video.currentTime;
                 }
-            }, 100);
+            }, 40);
 
             self.playHandler.call();
         }, false);
@@ -221,8 +221,10 @@
                 fixedVideo_endHandler.call(self);
             }
         });
-        this.audio.setAttribute('preload', '');
+        // this.audio.setAttribute('preload', '');
         this.audio.src = opts.audio;
+        this.audio.play();
+        this.audio.pause();
 
         this.ispaused = true;
         this.ismuted = opts.muted;
@@ -299,6 +301,8 @@
         self.flag_loading = setInterval(function(){
             if(self.muted) return;
 
+            console.log('==========', self.audio.currentTime);
+
             if(self.prevTime == self.audio.currentTime){
                 // loading
                 self.loading.style.display = 'block';
@@ -310,7 +314,7 @@
                 self.prevTime = self.audio.currentTime;
                 self.video.play();
             }
-        }, 100);
+        }, 40);
 
         self.playHandler.call();
     };
