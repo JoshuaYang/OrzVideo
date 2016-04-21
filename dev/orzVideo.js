@@ -95,7 +95,7 @@
                 // set: function(val){
                 //     this.video.currentTime = val;
                 // }
-            },
+            }
         });
     };
 

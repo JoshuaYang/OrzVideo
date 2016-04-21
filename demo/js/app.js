@@ -10,7 +10,6 @@ var btn_get_muted = document.getElementById('btn-get-muted');
 var btn_get_current_time = document.getElementById('btn-get-current-time');
 
 
-
 var orzVideo = new OrzVideo({
     container: document.getElementById('orz-video1'),
     video: 'media/video.mp4',
