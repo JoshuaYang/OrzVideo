@@ -213,7 +213,9 @@
             forceCanvas2D: true,
             onload: function(){
                 self.loaded = true;
-                if(self.autoplay) self.play();
+                if(self.autoplay){
+                    self.play();
+                }
             },
             onfinished: function(){
                 fixedVideo_endHandler.call(self);
