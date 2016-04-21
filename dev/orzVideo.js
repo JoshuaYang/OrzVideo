@@ -213,7 +213,6 @@
             forceCanvas2D: true,
             onload: function(){
                 self.loaded = true;
-
                 if(self.autoplay) self.play();
             },
             onfinished: function(){
@@ -301,13 +300,13 @@
             if(self.prevTime == self.audio.currentTime){
                 // loading
                 self.loading.style.display = 'block';
-                // self.audio.pause();
+                self.video.pause();
             }else{
                 // no loading
                 self.loading.style.display = 'none';
 
                 self.prevTime = self.audio.currentTime;
-                // self.audio.play();
+                self.video.play();
             }
         }, 100);
 
