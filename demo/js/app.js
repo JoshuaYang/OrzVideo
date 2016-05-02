@@ -15,6 +15,8 @@ var btn_get_current_time = document.getElementById('btn-get-current-time');
 var orzVideo;
 
 btn_load.addEventListener('click', function(){
+    if(orzVideo !== undefined) return;
+    
     orzVideo = new OrzVideo({
         container: document.getElementById('orz-video1'),
         video: 'media/video.mp4',
