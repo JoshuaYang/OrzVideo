@@ -136,6 +136,7 @@
         this.video.style.position = 'relative';
         this.video.style.zIndex = 2;
         this.video.style.visibility = 'hidden';
+        this.video.classList.add('content');
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
@@ -388,6 +389,7 @@
         this.canvas.style.position = 'relative';
         this.canvas.style.zIndex = 2;
         this.canvas.style.display = 'none';
+        this.canvas.classList.add('content');
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
