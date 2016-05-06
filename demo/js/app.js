@@ -16,7 +16,7 @@ var orzVideo;
 
 btn_load.addEventListener('click', function(){
     if(orzVideo !== undefined) return;
-    
+
     orzVideo = new OrzVideo({
         container: document.getElementById('orz-video1'),
         video: 'media/video.mp4',
@@ -34,6 +34,9 @@ btn_load.addEventListener('click', function(){
         },
         onend: function(){
             console.log('==========end');
+        },
+        onclick: function(){
+            console.log('==========click');
         }
     });
 });

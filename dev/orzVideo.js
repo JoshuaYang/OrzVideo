@@ -36,7 +36,8 @@
         muted: false,
         onplay: function(){},
         onpause: function(){},
-        onend: function(){}
+        onend: function(){},
+        onclick: function(){}
     };
 
 
@@ -70,6 +71,7 @@
         this.playHandler = opts.onplay;
         this.pauseHandler = opts.onpause;
         this.endHandler = opts.onend;
+        this.clickHandler = opts.onclick;
 
         normalVideo_initStruct.call(this);
         normalVideo_initEvent.call(this);
@@ -185,6 +187,10 @@
 
             self.endHandler.call();
         }, false);
+
+        self.video.addEventListener('click', function(){
+            self.clickHandler.call();
+        });
     }
 
     function normalVideo_stopLoading(){
@@ -236,6 +242,7 @@
         this.playHandler = opts.onplay;
         this.pauseHandler = opts.onpause;
         this.endHandler = opts.onend;
+        this.clickHandler = opts.onclick;
 
         fixedVideo_initStruct.call(self);
         fixedVideo_initEvent.call(self);
@@ -300,8 +307,6 @@
 
         self.flag_loading = setInterval(function(){
             if(self.muted) return;
-
-            console.log('==========', self.audio.currentTime);
 
             if(self.prevTime == self.audio.currentTime){
                 // loading
@@ -391,6 +396,10 @@
 
     function fixedVideo_initEvent(){
         var self = this;
+
+        self.canvas.addEventListener('click', function(){
+            self.clickHandler.call();
+        });
     }
 
     function fixedVideo_endHandler(){

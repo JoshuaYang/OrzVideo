@@ -42,6 +42,7 @@ var orzVideo = new OrzVideo({...options});
 | onplay       | function | null      | called when play                         |
 | onpause      | function | null      | called when pause                        |
 | onend        | function | null      | called when reach the end                |
+| onclick      | function | null      | call when click on frame content         |
 
 ### property
 
