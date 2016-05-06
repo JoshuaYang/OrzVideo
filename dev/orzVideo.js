@@ -117,6 +117,7 @@
         this.video.pause();
         this.video.currentTime = 0;
         this.firstFrame.style.display = 'block';
+        this.video.style.visibility = 'hidden';
     };
 
     function normalVideo_initStruct(){
@@ -134,6 +135,7 @@
 
         this.video.style.position = 'relative';
         this.video.style.zIndex = 2;
+        this.video.style.visibility = 'hidden';
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
@@ -154,6 +156,7 @@
         self.video.addEventListener('play', function(){
             self.firstFrame.style.display = 'none';
             self.endFrame.style.display = 'none';
+            self.video.style.visibility = 'visible';
 
             self.flag_loading = setInterval(function(){
                 if(self.prevTime == self.video.currentTime){
@@ -180,9 +183,11 @@
 
             if(self.resetWhenEnd){
                 self.firstFrame.style.display = 'block';
+                self.video.style.visibility = 'hidden';
                 self.video.currentTime = 0;
             }else{
                 self.endFrame.style.display = 'block';
+                self.video.style.visibility = 'hidden';
             }
 
             self.endHandler.call();
@@ -304,6 +309,7 @@
 
         self.firstFrame.style.display = 'none';
         self.endFrame.style.display = 'none';
+        self.canvas.style.visibility = 'visible';
 
         self.flag_loading = setInterval(function(){
             if(self.muted) return;
@@ -363,6 +369,7 @@
         self.audio.currentTime = 0;
 
         self.firstFrame.style.display = 'block';
+        self.canvas.style.visibility = 'hidden';
     };
 
     function fixedVideo_initStruct(){
@@ -380,6 +387,7 @@
 
         this.canvas.style.position = 'relative';
         this.canvas.style.zIndex = 2;
+        this.canvas.style.display = 'none';
 
         this.firstFrame.style.position = 'absolute';
         this.firstFrame.style.top = 0;
@@ -418,8 +426,10 @@
 
         if(self.resetWhenEnd){
             self.firstFrame.style.display = 'block';
+            self.canvas.style.visibility = 'hidden';
         }else{
             self.endFrame.style.display = 'block';
+            self.canvas.style.visibility = 'hidden';
         }
 
         self.endHandler.call();
