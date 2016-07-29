@@ -235,10 +235,8 @@
         });
         // this.audio.setAttribute('preload', '');
         this.audio.src = opts.audio;
-        this.audio.play().then(function(){
-            self.audio.pause();
-        });
-        // this.audio.pause();
+        this.audio.play();
+        this.audio.pause();
 
         this.ispaused = true;
         this.ismuted = opts.muted;
