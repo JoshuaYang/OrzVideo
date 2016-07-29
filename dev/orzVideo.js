@@ -388,7 +388,7 @@
 
         this.canvas.style.position = 'relative';
         this.canvas.style.zIndex = 2;
-        this.canvas.style.display = 'none';
+        this.canvas.style.display = 'block';
         this.canvas.classList.add('content');
 
         this.firstFrame.style.position = 'absolute';
