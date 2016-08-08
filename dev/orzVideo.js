@@ -326,7 +326,7 @@
                 self.prevTime = self.audio.currentTime;
                 self.video.play();
             }
-        }, 40);
+        }, 150);
 
         self.playHandler.call();
     };
