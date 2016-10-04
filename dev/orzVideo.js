@@ -303,7 +303,11 @@
 
         if(!self.loaded){
             self.autoplay = true;
-            self.loading.style.display = 'block';
+
+            if(self.hasAudio){
+                self.loading.style.display = 'block';
+            }
+
             return;
         }
 
