@@ -21,7 +21,7 @@ btn_load.addEventListener('click', function(){
         container: document.getElementById('orz-video1'),
         video: 'media/video.mp4',
         mpg: 'media/video.mpg',
-        audio: 'media/video.aac',
+        // audio: 'media/video.aac',
         firstFrame: 'media/video_firstframe.jpg',
         endFrame: 'media/video_endframe.jpg',
         resetWhenEnd: true,

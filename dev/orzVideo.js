@@ -234,9 +234,15 @@
             }
         });
         // this.audio.setAttribute('preload', '');
-        this.audio.src = opts.audio;
-        this.audio.play();
-        this.audio.pause();
+
+        this.hasAudio = opts.audio !== undefined;
+
+        if(this.hasAudio){
+            this.audio.src = opts.audio;
+            this.audio.play();
+            this.audio.pause();
+        }
+
 
         this.ispaused = true;
         this.ismuted = opts.muted;
@@ -277,13 +283,16 @@
 
                     this.ismuted = val;
 
-                    if(this.ismuted){
-                        this.audio.pause();
-                    }else{
-                        this.audio.currentTime = this.currentTime;
+                    if(this.hasAudio){
+                        if(this.ismuted){
+                            this.audio.pause();
+                        }else{
+                            this.audio.currentTime = this.currentTime;
 
-                        if(!this.ispaused) this.audio.play();
+                            if(!this.ispaused) this.audio.play();
+                        }
                     }
+
                 }
             }
         });
@@ -302,11 +311,15 @@
         self.paused = false;
 
         self.video.play();
-        if(this.ismuted){
-            this.audio.pause();
-        }else{
-            this.audio.play();
+
+        if(self.hasAudio){
+            if(self.ismuted){
+                self.audio.pause();
+            }else{
+                self.audio.play();
+            }
         }
+
 
         self.firstFrame.style.display = 'none';
         self.endFrame.style.display = 'none';
@@ -314,6 +327,7 @@
 
         self.flag_loading = setInterval(function(){
             if(self.muted) return;
+            if(!self.hasAudio) return;
 
             if(self.prevTime == self.audio.currentTime){
                 // loading
@@ -344,7 +358,11 @@
         self.paused = true;
 
         self.video.pause();
-        self.audio.pause();
+
+        if(self.hasAudio){
+            self.audio.pause();
+        }
+
 
         fixedVideo_stopLoading.call(self);
         self.pauseHandler.call();
@@ -366,8 +384,11 @@
         self.video.play();
         self.video.pause();
 
-        self.audio.pause();
-        self.audio.currentTime = 0;
+        if(self.hasAudio){
+            self.audio.pause();
+            self.audio.currentTime = 0;
+        }
+
 
         self.firstFrame.style.display = 'block';
         self.canvas.style.visibility = 'hidden';
@@ -423,8 +444,11 @@
         self.video.play();
         self.video.pause();
 
-        self.audio.pause();
-        self.audio.currentTime = 0;
+        if(self.hasAudio){
+            self.audio.pause();
+            self.audio.currentTime = 0;
+        }
+
 
         if(self.resetWhenEnd){
             self.firstFrame.style.display = 'block';
