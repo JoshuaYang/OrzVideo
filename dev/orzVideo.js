@@ -169,7 +169,7 @@
 
                     self.prevTime = self.video.currentTime;
                 }
-            }, 40);
+            }, 150);
 
             self.playHandler.call();
         }, false);
@@ -225,7 +225,9 @@
             forceCanvas2D: true,
             onload: function(){
                 self.loaded = true;
+
                 if(self.autoplay){
+                    self.loading.style.display = 'none';
                     self.play();
                 }
             },
@@ -304,9 +306,9 @@
         if(!self.loaded){
             self.autoplay = true;
 
-            if(self.hasAudio){
+            // if(self.hasAudio){
                 self.loading.style.display = 'block';
-            }
+            // }
 
             return;
         }
@@ -333,7 +335,7 @@
             if(self.muted) return;
             if(!self.hasAudio) return;
 
-            if(self.prevTime == self.audio.currentTime){
+            if(self.prevTime == self.currentTime){
                 // loading
                 self.loading.style.display = 'block';
                 self.video.pause();
@@ -341,7 +343,7 @@
                 // no loading
                 self.loading.style.display = 'none';
 
-                self.prevTime = self.audio.currentTime;
+                self.prevTime = self.currentTime;
                 self.video.play();
             }
         }, 150);
